@@ -293,12 +293,15 @@ function ProductList({ onHomeClick }) {
                             onClick={(e) => handleCartClick(e)} 
                             style={styleA}>
                                 <h1 className='cart'>
+                                    <div className="cart_quantity_count">
+                                        {calculateTotalQuantity()}
+                                    </div>
                                     <svg 
                                         xmlns="http://www.w3.org/2000/svg" 
                                         viewBox="0 0 256 256" 
                                         id="IconChangeColor" 
                                         height="68" width="68"><rect width="156" height="156" 
-                                        fill="">
+                                        fill="none">
                                             </rect>
                                             <circle cx="80" cy="216" r="12"></circle>
                                             <circle cx="184" cy="216" r="12"></circle>
@@ -310,11 +313,12 @@ function ProductList({ onHomeClick }) {
                                                 stroke-width="2" id="mainIconPathAttribute"></path></svg></h1></a></div>
                 </div>
             </div>
+            
             {!showCart ? (
                 <div className="product-grid">
                     {plantsArray.map((category, index) => (
                         <div key={index}>
-                            <h1 className="plant-heading"> 
+                            <h1 className="product-grid"> 
                                 <div>{category.category}</div> 
                             </h1>
                             <div className="product-list">
