@@ -8,6 +8,7 @@ function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
+    const CartItems = useSelector((state) => state.cart)
     const dispatch = useDispatch();
 
     const plantsArray = [
@@ -267,6 +268,10 @@ function ProductList({ onHomeClick }) {
         }));
     };
 
+    const calculateTotalQuantity = () => {
+        return CartItems ? CartItems.reduce((total, item) => total + item.quantity, 0) : 0;
+    };
+
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -291,14 +296,14 @@ function ProductList({ onHomeClick }) {
                 <div className="product-grid">
                     {plantsArray.map((category, index) => (
                         <div key={index}>
-                            <h1> 
+                            <h1 className="plant-heading"> 
                                 <div>{category.category}</div> 
                             </h1>
                             <div className="product-list">
                                 {category.plants.map((plant, plantIndex) => (
                                     <div className="product-card" key={plantIndex}>
                                         <img 
-                                            className="product-img"
+                                            className="product-image"
                                             src={plant.image} 
                                             alt={plant.name}
                                         />
@@ -313,7 +318,7 @@ function ProductList({ onHomeClick }) {
                                         </div>
                                         <button 
                                             className="product-button"
-                                            onClick={() => handleAddToCart(plant)}
+                                            onClick={() => handleAddToCart(plant.name)}
                                         >
                                             Add to Cart
                                         </button>
