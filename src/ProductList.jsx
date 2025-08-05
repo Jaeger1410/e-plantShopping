@@ -339,10 +339,10 @@ function ProductList({ onHomeClick }) {
                                             {plant.cost}
                                         </div>
                                         <button 
-                                            className="product-button"
+                                            className={addedToCart === true ? "product-button.added-to-cart" : "product-button"}
                                             onClick={() => handleAddToCart(plant)}
                                         >
-                                            Add to Cart
+                                            Add to Cart 
                                         </button>
                                     </div>
                                 ))}
